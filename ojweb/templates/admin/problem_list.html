@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% block title %}Admin Problems{% endblock %}
+{% block main %}
+    <table style="width:100%">
+        <tr>
+            <th style="width:20%">Problem No.</th>
+            <th style="width:30%">Title</th>
+            <th style="width:15%">Accepted</th>
+            <th style="width:15%">Submit</th>
+            <th style="width:10%">Edit</th>
+            <th style="width:10%">Status</th>
+        </tr>
+        {% for p in page.object_list %}
+        <tr>
+            <td style="text-align:center">{{p.no}}</td>
+            <td><a href="/problem/{{p.no}}">{{p.title}}</a></td>
+            <td style="text-align:center">{{p.ac}}</td>
+            <td style="text-align:center">{{p.totalsubmit}}</td>
+            <td style="text-align:center"><a href="/admin/problem/edit/{{p.id}}">Edit</a></td>
+            <td style="text-align:center">
+                {% if p.is_available  %}
+                    <a href="/admin/problem/disable/{{p.id}}">Disable</a>
+                {% else %}
+                    <a href="/admin/problem/enable/{{p.id}}" style="font-weight:bold">Enable</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <p>There are now no problems yet.</p>
+        {% endfor %}
+    </table>
+{% endblock %}

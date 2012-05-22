@@ -1,0 +1,66 @@
+{% extends "web/base.html" %}
+{% block title %}Problems{% endblock %}
+{% block main %}
+    <center>
+    <p>
+        <a href="/problems/1">First</a> | 
+        {% for idx in pages.page_range %}
+            {% ifequal page.number idx %}
+                <strong>{{idx}}</strong>
+            {% else %}
+                <a href="/problems/{{idx}}">{{idx}}</a>
+            {% endifequal %} | 
+        {% endfor %}
+        <a href="/problems/{{pages.num_pages}}">Last</a>
+    </p>
+    </center>
+    <table style="width:100%">
+        <tr>
+            <th></th>
+            <th style="width:20%">Problem No.</th>
+            <th style="width:35%">Title</th>
+            <th style="width:15%">Accepted</th>
+            <th style="width:15%">Submit</th>
+            <th style="width:15%">Ratio</th>
+        </tr>
+        {% for p in page.object_list %}
+        <tr>
+            <td>
+            {% ifequal p.trystatus 1 %}
+                <strong>Y</strong>
+            {% endifequal %}
+            {% ifequal p.trystatus -1 %}
+                <strong>N</strong>
+            {% else %}
+            {% endifequal %}            
+            </td>
+            <td style="text-align:center">{{p.no}}</td>
+            <td><a href="/problem/{{p.no}}">{{p.title}}</a></td>
+            <td style="text-align:center">{{p.acceptednum}}</td>
+            <td style="text-align:center">{{p.submitnum}}</td>
+            <td style="text-align:center">
+			{% ifequal p.submitnum 0 %}
+			0
+			{% else %}
+			{% widthratio p.acceptednum p.submitnum 100 %}%
+			{% endifequal %}
+			</td>
+        </tr>
+        {% empty %}
+        <p>There are now no problems yet.</p>
+        {% endfor %}
+    </table>
+    <center>
+    <p>
+        <a href="/problems/1">First</a> | 
+        {% for idx in pages.page_range %}
+            {% ifequal page.number idx %}
+                <strong>{{idx}}</strong>
+            {% else %}
+                <a href="/problems/{{idx}}">{{idx}}</a>
+            {% endifequal %} | 
+        {% endfor %}
+        <a href="/problems/{{pages.num_pages}}">Last</a>
+    </p>
+    </center>
+{% endblock %}

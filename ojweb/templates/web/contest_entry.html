@@ -1,0 +1,13 @@
+{% extends "web/base.html" %}
+{% block title %}Contest Entry{% endblock %}
+{% block main %}
+<h1>{{contest.title}}</h1>
+<h2>Description</h2>
+<p>{{contest.desc}}</p>
+<h2>Agreement</h2>
+<p>......</p>
+<form action="" method="post">
+<p><input type="checkbox" value="Agree" id="cbxAgree" name="cbxAgree">I Agree</p>
+<p><input type="submit" value="Submit"/></p>
+</form>
+{% endblock %}

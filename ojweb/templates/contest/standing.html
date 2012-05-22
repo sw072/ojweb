@@ -1,0 +1,42 @@
+{% extends "contest/base.html" %}
+{% block title %}Contest Standing{% endblock %}
+{% block main %}
+<style type="text/css">
+.ac{
+    background-color: #aaffaa;
+}
+.try{
+    background-color: #ffaaaa;
+}
+</style>
+    <center><h1>Standing</h1></center>
+    <table style="width:100%; text-align:center">
+        <tr>
+            <th style="width:5%">Rank</th>
+            <th style="width:10%">User</th>
+            <th style="width:5%">Solved</th>
+            <th style="width:15%">Penalty</th>
+            {% for seq in problem_sequence_list %}
+            <th style="width:15%"><a href="/contest/{{contest.id}}/problem/{{seq}}">{{seq}}</th>
+            {% endfor %}
+        </tr>
+        {% for u in contestants %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>
+                <a href="/user/{{u.username}}" target="_blank">{{u.username}}</a>
+            </td>
+            <td>{{u.solved}}</td>
+            <td>
+                {{u.penalty}}
+            </td>
+            {% for s in u.submit %}
+            <td {% if s.0 %}class="ac"{% elif s.1%}class="try"{% endif %}>
+            {% if s.0 %}{{s.0}}{% endif %}
+            {% if s.1 %}(-{{s.1}}){% endif %}
+            </td>
+            {% endfor %}
+        {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

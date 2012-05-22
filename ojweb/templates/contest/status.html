@@ -1,0 +1,56 @@
+{% extends "contest/base.html" %}
+{% block title %}Contest Online Status{% endblock %}
+{% block main %}
+    <table style="width:100%; text-align:center">
+        <tr>
+            <th style="width:10%">Run ID</th>
+            <th style="width:15%">User Name</th>
+            <th style="width:10%">Problem No.</th>
+            <th style="width:10%">Result</th>
+            <th style="width:10%">Time</th>
+            <th style="width:10%">Memory</th>
+            <th style="width:10%">Language</th>
+            <th style="width:10%">Code Length</th>
+            <th style="width:25%">Submit Time</th>
+        </tr>
+        {% for s in page.object_list %}
+        <tr>
+            <td>{{s.id}}</td>
+            <td>
+                <a href="/user/{{s.user.username}}" target="_blank">{{s.user.username}}</a>
+            </td>
+            <td><a href="/contest/{{contest.id}}/problem/{{s.sequence}}">{{s.sequence}}</a></td>
+            <td>{{s.resultstring}}</td>
+            <td>
+                {% ifequal s.runtime -1 %}
+                    --
+                {% else %}
+                    {{s.runtime}}MS
+                {% endifequal %}
+            </td>
+            <td>
+                {% ifequal s.runmem -1 %}
+                    --
+                {% else %}
+                    {{s.runmem}}KB
+                {% endifequal %}
+            </td>
+            <td>
+                {% ifequal request.user.username s.user.username %}
+                    <a href="/code/{{s.id}}" target="_blank">{{s.compiler.lang}}</a>
+                {% else %}
+                    {{s.compiler.lang}}
+                {% endifequal %}
+            </td>
+            <td>{{s.codelen}}B</td>
+            <td>{{s.jointime|date:"Y-m-d H:i:s"}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">
+                <p>There are now no submit yet.</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

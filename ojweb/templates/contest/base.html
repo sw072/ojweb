@@ -1,0 +1,59 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="/static/site2.css"/>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div id="logo">
+                <a href="/">
+                    <img src="/static/oj-logo.gif" width="188"
+                        height="52" alt="Online Judge"/></a></div>
+            <div id="description">
+            	{% if request.user.is_authenticated %}
+            		Welcome! <a href="/user/{{request.user.username}}"><strong>{{request.user.username}}</strong></a>
+            		<br/>
+            		<a href="/message/{{request.user.username}">Message[0]</a>
+            		<br/>
+            		<a href="/signout">[Sign out]</a>
+            		<br>
+            	{% else %}
+            		<a href="/register">Register</a> | <a href="/signin">Sign in</a>
+            	{% endif %}
+            </div>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/contest/{{contest.id}}/webboard">Web Border</a></li>
+                <li><a href="/contest/{{contest.id}}">Problem Set</a></li>
+                <li><a href="/contest/{{contest.id}}/status">Status</a></li>
+                <li><a href="/contest/{{contest.id}}/standing">Standing</a></li>
+                <li><a href="/contest/{{contest.id}}/stat">Statistic</a>
+                </li>
+            </ul>
+        </div>
+        <hr/>
+        <div id="main-body">
+            <div id="content">
+	            {% block main %}{% endblock %}
+            </div>
+        </div>
+        <!-- end #main-body -->
+        <hr/>
+        <div id="footer">
+            <div class="copyright">
+                <p>
+                    {{contest.title}}
+                </p>
+            <br clear="both">
+            </div>
+        </div>
+    </div>
+    <!-- end #wrap -->
+</body>
+</html>

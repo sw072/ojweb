@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+{% block extra %}
+    <script type="text/javascript" src="/media/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="/media/tiny_mce/textareas.js"></script>
+{% endblock %}
+{% block title %}Admin Problem{% endblock %}
+{% block main %}
+<form action="" method="post">
+    {% if form.errors %}
+        {{form.problem_no.errors}}
+        {{form.title.errors}}
+        {{form.timelmt.errors}}
+        {{form.memlmt.errors}}
+        {{form.desc.errors}}
+        {{form.inputdesc.errors}}
+        {{form.outputdesc.errors}}
+        {{form.sampleinput.errors}}
+        {{form.sampleoutput.errors}}
+        {{form.hint.errors}}
+        {{form.source.errors}}
+    {% endif %}
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:20%">Problem No.: </td><td>{{form.problem_no}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Title: </td><td>{{form.title}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Time Limitation: </td><td>{{form.timelmt}}MS</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Memory Limitation: </td><td>{{form.memlmt}}KB</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Description: </td><td>{{form.desc}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Input Description: </td><td>{{form.inputdesc}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Output Description: </td><td>{{form.outputdesc}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Sample Input: </td><td>{{form.sampleinput}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Sample Output: </td><td>{{form.sampleoutput}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Hint: </td><td>{{form.hint}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Source: </td><td>{{form.source}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Status: </td><td>{{form.status}}</td>
+        </tr>
+    </table>
+    <center><input type="submit" value="Submit" class="btn" /></center>
+</form>
+{% endblock %}

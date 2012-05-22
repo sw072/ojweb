@@ -1,0 +1,45 @@
+{% extends "web/base.html" %}
+{% block title %}User-{{user.username}}{% endblock %}
+{% block main %}
+<center><h1>User: {{user.username}}</h1></center>
+<table style="width:100%; text-align:center">
+    <tr>
+        <td style="width:20%; text-align:right">Rank:</td>
+        <td>
+            --
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Email:</td>
+        <td>{{user.email}}</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">School:</td>
+        <td>{{user.get_profile.school}}</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Homepage:</td>
+        <td><a href="{{user.get_profile.homepage}}" target="_blank">{{user.get_profile.homepage}}</a></td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Motto:</td>
+        <td>{{user.get_profile.motto}}</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Solved:</td>
+        <td>{{user.get_profile.solvednum}}</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Submit:</td>
+        <td>{{user.get_profile.submitnum}}</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Solved Problems:</td>
+        <td style="text-align:left">
+        {% for problem_no in solved_list %}
+            <a href="/problem/{{problem_no}}">{{problem_no}}</a>
+        {% endfor %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

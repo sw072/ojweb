@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% block title %}Admin Contest Problems{% endblock %}
+{% block main %}
+<form action="/admin/contest/{{form.contest_id.value}}/contestproblems/new" method="post">
+    <p>Contest: {{form.contest_id.value}}<a href="/admin/contest/{{form.contest_id.value}}/edit">[Return]</a></p>
+    <span style="visibility: hidden">{{form.contest_id}}</span>
+    <p>Sequence: {{form.sequencechar}}</p>
+    <p>Problem No.: {{form.problem_no}}</p>
+    <input class="btn" value="Add" type="submit"/>
+</form>
+    <table style="width:100%">
+        <tr>
+            <th style="width:20%">Problem</th>
+            <th style="width:60%">Title</th>
+            <th style="width:20%">Delete</th>
+        </tr>
+        {% for cp in contestproblem_list %}
+        <tr>
+            <td style="text-align:center">{{cp.sequencechar}}</td>
+            <td><a href="/problem/{{cp.problem.no}}">{{cp.problem.title}}</a></td>
+            <td style="text-align:center"><a href="/admin/contest/{{cp.contest.id}}/contestproblems/delete/{{cp.sequencechar}}">Delete</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3"><p>There are now no problem yet.</p></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

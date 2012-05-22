@@ -1,0 +1,63 @@
+﻿{% extends "admin/base.html" %}
+{% block title %}Online Judge Admin{% endblock %}
+{% block main %}
+    <div id="index-content">
+        <div id="content-inner">
+            <h1>
+                Welcome to our Oline Judge
+            </h1>
+            <p>
+									<a href="/problems">Problem Set</a> is the place where you can find large amount of problems from different programming contests.Online Judge System allows you to test your solution for every problem.
+								</p>
+								<p>
+								First of all, read carefully <a href="/faq">Frequently Asked Questions</a>.
+  							Then, choose a problem, solve it and <a href="/submit">submit</a> your solution.
+  							</p>
+								<p>
+								If you want to publish your problems or setup your own online contest, just <a href="mailto:shiwei072@gmail.com">write us</a>.
+								</p>
+            <dl id="features">
+                <dt>Acknowledgement</dt>
+                <dd>
+                    <ul>
+                        <li><a href="http://www.python.org" target="_blank">Python</a></li>
+                        <li><a href="http://www.djangoproject.com" target="_blank">Django</a></li>
+                        <li><a href="http://www.mysql.com" target="_blank">MySQL</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- end #content-inner, #content -->
+    <div id="sidebar">
+        <div class="box">
+            <h3>Day Rank</h3>
+            <table width="100%">
+                <tr>
+                    <td>Li Ming</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Li Ming</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>Li Ming</td><td>1</td>
+                </tr>
+            </table>
+        </div>
+        <div class="box">
+            <h3>Month Rank</h3>
+            <table width="100%">
+                <tr>
+                    <td>Li Ming</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Li Ming</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>Li Ming</td><td>1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- end #sidebar -->
+{% endblock main %}

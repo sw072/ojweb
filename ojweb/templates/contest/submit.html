@@ -1,0 +1,34 @@
+{% extends "contest/base.html" %}
+{% block title %}Submit{% endblock %}
+{% block extra %}
+<style type="text/css">
+#idcode
+{
+    width: 80%;
+}
+</style>
+{% endblock %}
+{% block main %}
+<form action="" method="post">
+    {{form.compiler.errors}}
+    {{form.code.errors}}
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:20%">Problem No.: </td>
+            <td>
+                <a href="/contest/{{form.contest_id.value}}/problem/{{form.sequence.value}}">{{form.sequence.value}}</a> of Contest <a href="/contest/{{form.contest_id.value}}">{{form.contest_id.value}}</a>
+                <span style="visibility:hidden">{{form.sequence}}{{form.contest_id}}{{form.problem_no}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Compiler: </td><td>{{form.compiler}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Code: </td><td id="codetd">{{form.code}}</td>
+        </tr>
+        <tr>
+            <td></td><td style="text-align:left; padding-left:50px"><input type="submit" class="btn" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends "web/base.html" %}
+{% block title %}FAQ{% endblock %}
+{% block main %}
+<center><h1>F.A.Q</h1></center>
+<div id="faq">
+	<h2>Q.What is ACM/ICPC?</h2>
+	<p class="faq_content">A.&nbsp;ACM International Collegiate Programming Contest (abbreviated as ACM/ICPC or just ICPC) is an annual activity of the Association for Computing Machinery (ACM) that provides college students with an opportunity to demonstrate and sharpen their problem-solving and computing skills. The event is sponsored by IBM. See <a href="http://icpc.baylor.edu/">http://icpc.baylor.edu/</a> for details.</p>
+
+	<h2>Q.What is this site all about?</h2>
+    <p class="faq_content">A.   This web site is found to to be a place where ACM/ICPC's contestants can share their resources and ideas with others. Currently, this site consisits of a Problem Set Archive with Online Judge, a Discuss Board where people discuss ACM/ICPC related topics, as well as many Downloadable Materials.</p>
+
+    <h2>Q.Which compiler does the judge use and what are the compiler options?</h2>
+	<p class="faq_content">A.This online judge system is running on Redhat Linux. We use GNU G++ for C/C++ compiling and JDK 1.5.11 for Java Compiling. <br />
+	The compile options are:
+	</p>
+	<table style="margin:0px 20px 0px 20px;">
+	<tr>
+		<th style="width:5em;">C:</th><td>gcc foo.c -o foo -ansi -fno-asm -Wall -lm --static </td> 
+	</tr>
+	<tr>
+		<th>C++:</th><td>g++ foo.cpp -o foo -ansi -fno-asm -Wall -lm --static </td>
+	</tr>
+	<tr>
+		<th>Java:</th><td>Javac Main.java </td>
+	</tr>
+	</table>
+
+	<h2>Q.Where is the input and output?</h2>
+	<p class="faq_content">A.Your program shall read input from stdin('Standard Input') and write output to stdout('Standard Output').For example,you can use 'scanf' in C or 'cin' in C++ to read from stdin,and use 'printf' in C or 'cout' in C++ to write to stdout.</p>
+<pre>
+
+<p class="faq_content">Sample solution for problem 1000 using C</p>
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a,b;
+    while(scanf("%d %d",&amp;a, &amp;b) != EOF)
+        printf("%d\n",a+b);
+    return 0;
+}
+
+<p class="faq_content">Sample solution for problem 1000 using C++</p>
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int main()
+{
+    int x,y;
+    while(cin&gt;&gt;x&gt;&gt;y)
+        cout&lt;&lt;x+y&lt;&lt;endl;
+    return 0;
+}
+
+<p class="faq_content">Sample solution for problem 1000 using Java</p>
+
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+        public static void main (String args[]) throws Exception
+        {
+                BufferedReader stdin =
+                        new BufferedReader(
+                                        new InputStreamReader(System.in));
+                String line;
+                while((line = stdin.readLine()) != null){
+                        StringTokenizer st = new StringTokenizer(line);
+                        int a = Integer.parseInt(st.nextToken());
+                        int b = Integer.parseInt(st.nextToken());
+                        System.out.println(a + b);
+                }
+        }
+}
+
+<p class="faq_content">Sample solution for problem 1000 using JavaScript</p>
+
+var cin = new java.util.Scanner(java.lang.System["in"]);//'in' is key word in js
+var a;
+var b;
+while(cin.hasNext())
+{
+    a = cin.nextInt();
+    b = cin.nextInt();
+    java.lang.System.out.println((a+b).toString());//toString is neccessary or js Number will be treat as float
+}
+
+</pre>
+<h2>Q.What is the meaning of the judge's feedback such as SIGSEV?</h2>
+<p class="faq_content">A.Here is a list of the judge's replies and their meaning:<br /></p>
+<br />
+<p>
+<b>Runtime Error :</b> Your program failed during the execution (segmentation fault, floating point exception...). The exact cause is reported to the user.
+<br />
+</p>
+<p>
+<b style="margin-left:20px;">SIGSEGV :</b> --- Segment Fault. The possible cases of your encountering this error are: <br />
+	<ol style="margin-left:45px;">
+		<li>buffer overflow --- usually caused by a pointer reference out of range. </li>
+		<li>stack overflow --- please keep in mind that the default stack size is 8192K. </li>
+		<li>illegal file access --- file operations are forbidden on our judge system. </li>
+	</ol>
+</p>
+<p>
+	<b style="margin-left:20px;">SIGFPE :</b> --- Divided by 0<br />
+	<span style="margin-left:25px;">You can type man 7 signal under linux command line for more imformation.</span><br />
+	<br />
+</p>
+<p>
+	<b>Waiting</b> : The judge is so busy that it can't judge your submit at the moment, usualy you just need to wait a minute and your submit will be judged.<br />
+	<br />
+</p>
+<p>
+	<b>Accepted :</b> OK! Your program is correct!.<br />
+	<br />
+</p>
+<p>
+	<b>Presentation Error :</b> Your output format is not exactly the same as the judge's output, although your answer to the problem is correct. Check your output for spaces, blank lines,etc against the problem output specification.<br />
+	<br />
+</p>
+<p>
+	<b>Wrong Answer :</b> Correct solution not reached for the inputs. The inputs and outputs that we use to test the programs are not public.<br />
+	<br />
+</p>
+<p>
+	<b>Runtime Limit Exceeded :</b> Your program tried to run during too much time.<br />
+	<br />
+</p>
+<p>
+	<b>Memory Limit Exceeded :</b> Your program tried to use more memory than the judge default settings.<br />
+	<br />
+</p>
+<p>
+	<b>Compile Error :</b> The compiler (g++) could not compile your program. Of course, warning messages are not error messages. Click the link at the judge reply to see the actual error message.<br /> 
+	<br />
+</p>
+<p>
+	<b>Restricted Function :</b> Your program tried to call restricted functions , Such as "system","fork". <br />
+	<span style="color:red">due to the function "qsort" in C calls Sys_Open and Sys_Time, this function may also cause OJ return as Restricted Function.</span>
+	<br />
+	<br />
+</p>
+<p>
+	<b>Internal Server Error:</b> Something wrong is happend.If you get this result, please contact the administrator. <br />
+</p>
+
+	<h2>Q.Why did I get a Compile Error?</h2>
+        <p class="faq_content">A.There are some differences between GNU's G++ and Microsoft's VisualC++, such as:
+    <ul style="margin-left:30px;">
+	<li> main must be declared as int, void main will end up with a Compile Error.</li>
+	<li> i is out of definition after block "for(int i=0...){...}".</li>
+	<li> itoa is not an ANSI function.</li>
+	<li> __int64 of VC is not ANSI, but you can use long long for 64-bit integer.</li>
+	<li> <b style="color:red">A Java program must start execution in a static method named main in a class named Main</b>, otherwise Compile Error will be caused. </li>
+   </ul>
+</p>
+{% endblock %}

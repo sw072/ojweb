@@ -1,0 +1,32 @@
+{% extends "web/base.html" %}
+{% block title %}Submit{% endblock %}
+{% block extra %}
+<style type="text/css">
+#idcode
+{
+    width: 80%;
+}
+</style>
+{% endblock %}
+{% block main %}
+<form action="" method="post">
+    {{form.problem_no.errors}}
+    {{form.compiler.errors}}
+    {{form.code.errors}}
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:20%">Problem No.: </td>
+            <td>{{form.problem_no}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Compiler: </td><td>{{form.compiler}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Code: </td><td id="codetd">{{form.code}}</td>
+        </tr>
+        <tr>
+            <td></td><td style="text-align:left; padding-left:50px"><input type="submit" class="btn" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

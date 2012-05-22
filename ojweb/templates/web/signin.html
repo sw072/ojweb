@@ -1,0 +1,18 @@
+{% extends "web/base.html" %}
+{% block title %}Sign In{% endblock %}
+{% block main %}
+<form action="/signin/" method="post">
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:45%">User Name : </td><td>{{form.username}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Password : </td><td>{{form.password}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center"><input type="submit" class="btn" value="Sign In" /></td>
+        </tr>
+    </table>
+    {{form.next_url}}
+</form>
+{% endblock %}

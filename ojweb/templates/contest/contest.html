@@ -1,0 +1,33 @@
+{% extends "contest/base.html" %}
+{% block title %}Contest Title{% endblock %}
+{% block main %}
+    <center><h1>{{contest.title}}</h1></center>
+    <center>
+    <table width="80%">
+        <tr>
+            <th style="width:10%"></th>
+            <th style="width:20%">ID</th>
+            <th style="width:70%">Title</th>
+        </tr>
+        {% for cp in contestproblem_list %}
+        <tr>
+            <td style="text-align:center">
+            {% ifequal cp.trystatus 1 %}
+                <strong>Y</strong>
+            {% endifequal %}
+            {% ifequal cp.trystatus -1 %}
+                <strong>N</strong>
+            {% else %}
+            {% endifequal %}
+            </td>
+            <td style="text-align:center">
+                <a href="/contest/{{cp.contest.id}}/problem/{{cp.sequencechar}}">{{cp.sequencechar}}</a>
+            </td>
+            <td style="text-align:center">
+                <a href="/contest/{{cp.contest.id}}/problem/{{cp.sequencechar}}">{{cp.problem.title}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+{% endblock %}

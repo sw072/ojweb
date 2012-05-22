@@ -1,0 +1,13 @@
+{% extends "web/base.html" %}
+{% block title %}View Code{% endblock %}
+{% block main %}
+<h1>User: {{request.user.username}}</h1>
+<h1>{{submit.problem.no}}: {{submit.problem.title}}</h1>
+Run Time: 
+{% ifequal submit.runtime -1 %}--{% else %}{{submit.runtime}}{% endifequal %}MS
+Run Memory: 
+{% ifequal submit.runmem -1 %}--{% else %}{% widthratio submit.runmem 1024 1 %}{% endifequal %}KB
+<pre>
+{{submit.code}}
+</pre>
+{% endblock %}

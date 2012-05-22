@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block title %}Admin Contest{% endblock %}
+{% block main %}
+<form action="" method="post">
+    {% if form.errors %}
+        a{{form.title.errors}}
+        b{{form.desc.errors}}
+        c{{form.begintime.errors}}
+        d{{form.endtime.errors}}
+        e{{form.public.errors}}
+        f{{form.status.errors}}
+    {% endif %}
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:20%">Contest ID: </td><td>{{form.contestid}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Title: </td><td>{{form.title}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Description: </td><td>{{form.desc}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Begin Time: </td><td>{{form.begintime}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">End Time: </td><td>{{form.endtime}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Public: </td><td>{{form.public}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Status: </td><td>{{form.status}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right"><a href="/admin/contest/{{form.contestid.value}}/contestproblems/">Problems</a>: </td>
+            <td>
+                {% for cp in contestproblem_list %}
+                    ({{cp.sequencechar}})<a href="/problem/{{cp.problem.no}}" target="_blank">{{cp.problem.no}}</a>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <center><input type="submit" value="Submit" class="btn" /></center>
+</form>
+{% endblock %}

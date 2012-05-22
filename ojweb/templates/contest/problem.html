@@ -1,0 +1,32 @@
+{% extends "contest/base.html" %}
+{% block title %}{{sequence}}-{{problem.title}}{% endblock %}
+{% block main %}
+<center><h1>{{sequence}}. {{problem.title}}</h1></center>
+<center><span><strong>Time Limit:</strong> {{problem.timelmt}}MS | <strong>Memory Limit:</strong> {{problem.memlmt}}KB</span></center>
+<center><span><strong>Acceptd:</strong> {{problem.acceptednum}} | <strong>Submission:</strong> {{problem.submitnum}}</span></center>
+<h2>Description</h2>
+<div>{{problem.desc|safe}}</div>
+<h2>Input</h2>
+<div>{{problem.inputdesc|safe}}</div>
+<h2>Output</h2>
+<div>{{problem.outputdesc|safe}}</div>
+<h2>Sample Input</h2>
+<div><pre>{{problem.sampleinput|safe}}</pre></div>
+<h2>Sample Output</h2>
+<div><pre>{{problem.sampleoutput|safe}}</pre></div>
+<h2>Hint</h2>
+<div>{{problem.hint|safe}}</div>
+<div class="buttom-menu">
+<ul>
+    <li>
+        <a href="/contest/{{contest.id}}/submit/{{sequence}}" class="buttom-menu">Submit</a>
+    </li>
+    <li>
+        <a href="/problem/{{problem.no}}/stat" class="buttom-menu">Statistic</a>
+    </li>
+    <li>
+        <a href="/contest/{{contest.id}}/problem/{{sequence}}/discuss" class="buttom-menu">Discuss</a>
+    </li>
+</ul>
+</div>
+{% endblock %}

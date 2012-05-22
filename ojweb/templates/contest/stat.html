@@ -1,0 +1,43 @@
+{% extends "contest/base.html" %}
+{% block title %}Contest Title{% endblock %}
+{% block main %}
+    <center><h1>{{contest.title}}</h1></center>
+    <center>
+    <table width="95%">
+        <tr>
+            <th>Problem</th>
+            <th>Submission</th>
+            <th>Accepted</th>
+            <th>Compiler Error</th>
+            <th>Presentation Error</th>
+            <th>Wrong Answer</th>
+            <th>Time Limit Exceeded</th>
+            <th>Memory Limit Exceeded</th>
+            <th>Output Limit exceeded</th>
+            <th>Runtime Error</th>
+            <th>Restricted Function</th>
+            <th>Abnormal Termination</th>
+            <th>Internal Error</th>
+        </tr>
+        {% for cp in contest_problem_list %}
+        <tr>
+            <td style="text-align:center">
+                <a href="/contest/{{cp.contest.id}}/problem/{{cp.sequencechar}}">{{cp.sequencechar}}</a>
+            </td>
+            <td style="text-align:center">{{cp.submitnum}}</td>
+            <td style="text-align:center">{{cp.acnum}}</td>
+            <td style="text-align:center">{{cp.cenum}}</td>
+            <td style="text-align:center">{{cp.penum}}</td>
+            <td style="text-align:center">{{cp.wanum}}</td>
+            <td style="text-align:center">{{cp.tlenum}}</td>
+            <td style="text-align:center">{{cp.mlenum}}</td>
+            <td style="text-align:center">{{cp.olenum}}</td>
+            <td style="text-align:center">{{cp.renum}}</td>
+            <td style="text-align:center">{{cp.rfnum}}</td>
+            <td style="text-align:center">{{cp.atnum}}</td>
+            <td style="text-align:center">{{cp.ienum}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+{% endblock %}

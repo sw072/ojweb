@@ -1,0 +1,26 @@
+
+body {
+    color: #000;
+}
+
+#sidebar, #header, #nav,
+.topnav, .topnavmain, .sectionnavblock, .toclink {
+    display: none !important;
+    }
+#wrap, #content, #main-body, #content-inner, #docs {
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;    
+    border: 0;
+    width: auto !important;
+    }
+
+#footer {
+	clear: both;
+    margin: 2em 0 0 0 !important;
+    border-top: 1px solid #aaa !important;
+    padding: 1em;
+    background: none !important;
+	}
+	
+#footer .sflogo { display:none; }	

@@ -1,0 +1,39 @@
+{% extends "web/base.html" %}
+{% block title %}Online Status{% endblock %}
+{% block main %}
+<table style="width:100%; text-align:center">
+    <tr>
+        <th style="width:10%">Rank</th>
+        <th style="width:15%">User Name</th>
+        <th style="width:35%">Motto</th>
+        <th style="width:15%">Solved</th>
+        <th style="width:15%">Submit</th>
+    </tr>
+    {% for u in page.object_list %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>
+            <a href="/user/{{u.user.username}}" target="_blank">{{u.user.username}}</a>
+        </td>
+        <td>{{u.email}}</td>
+        <td>{{u.solvednum}}</td>
+        <td>{{u.submitnum}}</td>
+    </tr>
+    {% empty %}
+    <p>There are now no user yet.</p>
+    {% endfor %}
+</table>
+<center>
+    <p>
+        <a href="/rank/1">First</a> | 
+        {% for idx in pages.page_range %}
+            {% ifequal page.number idx %}
+                <strong>{{idx}}</strong>
+            {% else %}
+                <a href="/rank/{{idx}}">{{idx}}</a>
+            {% endifequal %} | 
+        {% endfor %}
+        <a href="/rank/{{pages.num_pages}}">Last</a>
+    </p>
+    </center>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "web/base.html" %}
+{% block title %}Online Status{% endblock %}
+{% block main %}
+<form action="/register/" method="post">
+    <center><h1>Register</h1></center>
+    <table width="100%">
+        <tr>
+            <td style="text-align:right; width:40%">User Name: </td><td>{{form.username}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Password: </td><td>{{form.password}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Confirm Password: </td><td>{{form.password2}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Email: </td><td>{{form.email}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">School: </td><td>{{form.school}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Homepage: </td><td>{{form.homepage}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Motto: </td><td>{{form.motto}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center"><input type="submit" class="btn" value="Register" /></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

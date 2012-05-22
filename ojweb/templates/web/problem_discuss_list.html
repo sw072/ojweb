@@ -1,0 +1,55 @@
+{% extends "web/base.html" %}
+{% block title %}Discussions{% endblock %}
+{% block main %}
+    <center><h1>Discussion List of Problem 
+    {% if problem.contest %}
+    <a href="/contest/{{problem.contest.id}}/problem/{{problem.sequence}}">{{problem.sequence}}</a> (<a href="/contest/{{problem.contest.id}}">Contest {{problem.contest.id}}</a>)
+    {% else %}
+    <a href="/problem/{{problem.no}}">{{problem.no}}</a>
+    {% endif %}
+    </h1></center>
+    <table style="width:100%">
+        <tr>
+            <th style="width:10%">No.</th>
+            <th style="width:45%">Title</th>
+            <th style="width:15%">User</th>
+            <th style="width:30%">Post Time</th>
+        </tr>
+        {% for d in discuss %}
+        <tr>
+            <td style="text-align:center">{{forloop.counter}}</td>
+            <td>
+            {% if problem.contest %}
+                <a href="/contest/{{problem.contest.id}}/problem/{{problem.sequence}}/discuss/{{d.id}}">{{d.title}}</a>
+            {% else %}
+                <a href="/problem/{{d.problem.no}}/discuss/{{d.id}}">{{d.title}}</a>
+            {% endif %}
+            </td>
+            <td style="text-align:center">{{d.user.username}}</td>
+            <td style="text-align:center">{{d.jointime|date:"Y-m-d H:i:s"}}</td>
+        </tr>
+        {% empty %}
+        <p>There are now no post yet.</p>
+        {% endfor %}
+    </table>
+    <form action="" method="post">
+    <span style="visibility:hidden">{{form.problem_no}}</span>
+    <table style="width:100%">
+        <tr>
+            <td style="width:20%; text-align:right">Problem: </td>
+            <td>{{form.problem_no.value}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Title: </td>
+            <td>{{form.title}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Content: </td>
+            <td>{{form.content}}</td>
+        </tr>
+        <tr>
+        <td></td><td><input type="submit" value="Post" class="btn"/></td>
+        </tr>
+    </table>
+    </form>
+{% endblock %}
