@@ -9,6 +9,7 @@ import settings
 
 urlpatterns = patterns('',
     (r'^$', index),
+    (r'^news/(?P<news_id>\d+)$', news),
     (r'^register/$', register),
     (r'^signin/$', signin),
     (r'^signout/$', signout),
@@ -45,6 +46,10 @@ urlpatterns = patterns('',
     (r'^contest/(?P<contest_id>\d+)/webboard/(?P<discussion_id>\d+)$', contest_web_board_detail),
     # admin
     (r'^admin/$', admin_index),
+    (r'^admin/news/$', admin_news_list, {'page_idx' : 1}),
+    (r'^admin/news/(?P<page_idx>\d+)$', admin_news_list),
+    (r'^admin/news/new/$', admin_news, {'news_id' : 0, 'action' : 'new'}),
+    (r'^admin/news/(?P<news_id>\d+)/(?P<action>\w+)$', admin_news),
     (r'^admin/problems/$', admin_problem_list, {'page_idx' : 1}),
     (r'^admin/problems/(?P<page_idx>\d+)$', admin_problem_list),
     (r'^admin/problem/(?P<action>\w+)/$', admin_problem, {'problem_id' : 0}),

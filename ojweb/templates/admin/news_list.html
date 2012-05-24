@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% block title %}Admin News{% endblock %}
+{% block main %}
+    <table style="width:100%">
+        <tr>
+            <th style="width:10%">News ID</th>
+            <th style="width:55%">Title</th>
+            <th style="width:15%">Join Time</th>
+            <th style="width:10%">Edit</th>
+            <th style="width:10%">Status</th>
+        </tr>
+        {% for news in page.object_list %}
+        <tr>
+            <td style="text-align:center">{{news.id}}</td>
+            <td><a href="/news/{{news.id}}">{{news.title}}</a></td>
+            <td style="text-align:center">{{news.jointime|date:"Y-m-d H:i:s"}}</td>
+            <td style="text-align:center"><a href="/admin/news/{{news.id}}/edit">Edit</a></td>
+            <td style="text-align:center">
+                {% if news.status  %}
+                    <a href="/admin/news/{{news.id}}/disable">Disable</a>
+                {% else %}
+                    <a href="/admin/news/{{news.id}}/enable" style="font-weight:bold">Enable</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <p>There are now no news yet.</p>
+        {% endfor %}
+    </table>
+{% endblock %}

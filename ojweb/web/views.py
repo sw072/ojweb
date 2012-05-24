@@ -9,7 +9,16 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
-    return render('web/index.html', context_instance=RequestContext(request))
+    num_show = 3
+    news_list = News.objects.filter(status=True).order_by('-id')[:3]
+    return render('web/index.html', {'news_list' : news_list}, context_instance=RequestContext(request))
+
+def news(request, news_id):
+    try:
+        news = News.objects.get(pk=news_id)
+    except News.DoesNotExist:
+        raise Http404
+    return render('web/news.html', {'news' : news}, context_instance=RequestContext(request))
 
 def problem_list(request, page_idx):
     num_per_page = 50

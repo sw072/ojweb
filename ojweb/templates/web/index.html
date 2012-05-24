@@ -19,6 +19,12 @@
             If you want to publish your problems or setup your own online contest, just <a href="mailto:shiwei072@gmail.com">
                 write us</a>.
         </p>
+        <h2>News</h2>
+        {% for news in news_list %}
+        <h1><a href="/news/{{news.id}}">{{news.title}}</a></h1>
+        Publish Date: {{news.jointime}}
+        <p>{{news.content|slice:":50"}}</p>
+        {% endfor %}
         <dl id="features">
             <dt>Acknowledgement</dt>
             <dd>

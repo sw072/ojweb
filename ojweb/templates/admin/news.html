@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% block extra %}
+    <script type="text/javascript" src="/media/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="/media/tiny_mce/textareas.js"></script>
+{% endblock %}
+{% block title %}Admin News{% endblock %}
+{% block main %}
+<form action="" method="post">
+    {% if form.errors %}
+        {{form.title.errors}}
+        {{form.content.errors}}
+    {% endif %}
+    <span style="visibility:hidden">{{form.news_id}}</span>
+    <table width="100%">
+        <tr>
+            <td style="text-align:right">Title: </td><td>{{form.title}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Content: </td><td>{{form.content}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Status: </td><td>{{form.status}}</td>
+        </tr>
+        <tr>
+            <td></td><td><input type="submit" value="Submit" class="btn" /></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

@@ -30,21 +30,15 @@
             	{% endif %}
             </div>
         </div>
-        {% if contest.id %}
-        <div id="Div1">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/contest/{{contest.id}}">Web Border</a></li>
-                <li><a href="/contest/{{contest.id}}">Problem Set</a></li>
-                <li><a href="/standing/{{contest.id}}">Standing</a></li>
-                <li><a href="/conteststat/{{contest.id}}">Statistic</a>
-                </li>
-            </ul>
-        </div>
-        {% else %}
         <div id="nav">
             <ul>
                 <li><a href="/admin">Home</a></li>
+                <li><a href="/admin/news">News</a>
+                    <ul>
+                        <li><a href="/admin/news">News</a></li>
+                        <li><a href="/admin/news/new">New News</a></li>
+                    </ul>
+                </li>
                 <li><a href="/admin/problems">Problems</a>
                     <ul>
                         <li><a href="/admin/problems">Problem Set</a></li>
@@ -64,7 +58,6 @@
                 </li>
             </ul>
         </div>
-        {% endif %}
         <hr/>
         <div id="main-body" class="home">
             <div id="content">

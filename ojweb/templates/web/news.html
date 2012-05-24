@@ -1,0 +1,14 @@
+{% extends "web/base.html" %}
+{% block title %}{{News.title}}{% endblock %}
+{% block main %}
+<center><h1>{{news.title}}</h1></center>
+<center>{{news.jointime|date:"Y-m-d H:i:s"}}</center>
+<div>{{news.content|safe}}</div>
+<div class="buttom-menu">
+    <ul>
+        <li>
+            <a href="/" class="buttom-menu">Return</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
