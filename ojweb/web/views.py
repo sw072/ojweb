@@ -6,6 +6,7 @@ from ojweb.web.models import *
 from django.views.decorators.csrf import csrf_exempt    #disable the csrf
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 # Create your views here.
 def index(request):
@@ -287,6 +288,28 @@ class RegistForm(forms.Form):
     school = forms.CharField(max_length=128)
     homepage = forms.URLField()
     motto = forms.CharField(max_length=256, widget=forms.widgets.Textarea)
+    
+    error_messages = {
+        'duplicate_username': _("A user with that username already exists."),
+        'password_mismatch': _("The two password fields didn't match."),
+    }
+    
+    def clean_username(self):
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
+        username = self.cleaned_data["username"]
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(self.error_messages['duplicate_username'])
+           
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password", "")
+        password2 = self.cleaned_data["password2"]
+        if password1 != password2:
+            raise forms.ValidationError(self.error_messages['password_mismatch'])
+        return password2
 
 @csrf_exempt
 def register(request):
@@ -299,7 +322,8 @@ def register(request):
             return render('web/register.html', {'form' : g}, context_instance=RequestContext(request))
         u = User()
         u.username = g.cleaned_data['username']
-        u.set_password(g.cleaned_data['password'])
+        upwd = g.cleaned_data['password']
+        u.set_password(upwd)
         u.email = g.cleaned_data['email']
         u.save()
         uinfo = UserProfile()
@@ -310,7 +334,7 @@ def register(request):
         uinfo.school = g.cleaned_data['school']
         uinfo.role = 'C'  # ordinary user
         uinfo.save()
-        u = authenticate(username=u.username, password=u.password)
+        u = authenticate(username=u.username, password=upwd)
         login(request, u)
         return redirect('/')
 
