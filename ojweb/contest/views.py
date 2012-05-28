@@ -84,6 +84,10 @@ class ContestSubmitForm(forms.Form):
     compiler = forms.ModelChoiceField(queryset=Compiler.objects.all().order_by(('sequence')))
     code = forms.CharField(widget=forms.widgets.Textarea(attrs={'rows':20, 'cols':80}))
 
+def _check_submit_time(c):
+    now = datetime.now()
+    return (now > c.begintime and now < c.endtime)
+
 @csrf_exempt
 @login_required
 def contest_submit(request, contest_id, sequence):
@@ -91,6 +95,8 @@ def contest_submit(request, contest_id, sequence):
         c = Contest.objects.get(pk=contest_id)
     except Contest.DoesNotExist:
         raise Http404
+    if not _check_submit_time(c):
+        return redirect('/contest/%d' % int(contest_id))
     if(request.method == 'POST'):
         form = ContestSubmitForm(request.POST)
         if form.is_valid():
