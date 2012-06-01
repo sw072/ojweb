@@ -281,13 +281,13 @@ def faq(request):
     return render('web/faq.html', context_instance=RequestContext(request))
 
 class RegistForm(forms.Form):
-    username = forms.CharField(max_length=32)
-    password = forms.CharField(max_length=32, widget=forms.widgets.PasswordInput)
-    password2 = forms.CharField(max_length=32, widget=forms.widgets.PasswordInput)
-    email = forms.EmailField()
-    school = forms.CharField(max_length=128)
-    homepage = forms.URLField()
-    motto = forms.CharField(max_length=256, widget=forms.widgets.Textarea)
+    username = forms.CharField(label='User Name', max_length=32)
+    password = forms.CharField(label='Password', max_length=32, widget=forms.widgets.PasswordInput)
+    password2 = forms.CharField(label='Password Confirm', max_length=32, widget=forms.widgets.PasswordInput)
+    email = forms.EmailField(label='Email', required=False)
+    school = forms.CharField(label='School', max_length=128, required=False)
+    homepage = forms.URLField(label='Homepage', required=False)
+    motto = forms.CharField(label='Motto', max_length=256, widget=forms.widgets.Textarea, required=False)
     
     error_messages = {
         'duplicate_username': _("A user with that username already exists."),

@@ -609,6 +609,7 @@ a img {
 }
 
 /* From doc.css */
+/*
 div.admonition, div.topic, p.deprecated {
     border:1px solid #CCCCCC;
     padding:5px 10px;
@@ -616,9 +617,23 @@ div.admonition, div.topic, p.deprecated {
     box-shadow: 2px 2px 3px #DFDFDF;
     background-color: rgb(238, 255, 239)
 }
+*/
+p.admonition-title {
+    color: #000000;
+	display: inline;
+	margin: 0px 10px 5px 0px;
+	font-weight: bold;
+}
 
-div.warning .admonition-title {
-    color:#FF0000;
+div.warning {
+	background-color: #FFE4E4;
+	border: 1px solid #F66;
+	font-size: 11px;
+}
+div.admonition {
+margin-top: 10px;
+margin-bottom: 10px;
+padding: 7px;
 }
 
 /* 
